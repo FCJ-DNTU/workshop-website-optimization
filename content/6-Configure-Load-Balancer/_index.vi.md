@@ -1,9 +1,9 @@
 +++
-title = "Giới thiệu"
+title = "Cấu hình Load Balencer"
 date = 2020-05-14T00:38:32+07:00
-weight = 1
+weight = 6
 chapter = false
-pre = "<b>1. </b>"
+pre = "<b>6. </b>"
 +++
 
 **Nội dung:**

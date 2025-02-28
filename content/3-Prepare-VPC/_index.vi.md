@@ -1,9 +1,9 @@
 +++
-title = "Giới thiệu"
+title = "Chuẩn bị VPC Instance"
 date = 2020-05-14T00:38:32+07:00
-weight = 1
+weight = 3
 chapter = false
-pre = "<b>1. </b>"
+pre = "<b>3. </b>"
 +++
 
 **Nội dung:**

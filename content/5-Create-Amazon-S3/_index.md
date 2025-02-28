@@ -1,9 +1,9 @@
 +++
-title = "Introduction"
+title = "Create S3 Bucket"
 date = 2020-05-14T00:38:32+07:00
-weight = 1
+weight = 5
 chapter = false
-pre = "<b>1. </b>"
+pre = "<b>5. </b>"
 +++
 
 **Content:**

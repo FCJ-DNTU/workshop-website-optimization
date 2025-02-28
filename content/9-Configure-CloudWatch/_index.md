@@ -1,9 +1,9 @@
 +++
-title = "Introduction"
+title = "Configure CloudWatch"
 date = 2020-05-14T00:38:32+07:00
-weight = 1
+weight = 9
 chapter = false
-pre = "<b>1. </b>"
+pre = "<b>9. </b>"
 +++
 
 **Content:**

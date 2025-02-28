@@ -1,9 +1,9 @@
 +++
-title = "Giới thiệu"
+title = "Khởi chạy AMI và Auto Scaling"
 date = 2020-05-14T00:38:32+07:00
-weight = 1
+weight = 7
 chapter = false
-pre = "<b>1. </b>"
+pre = "<b>7. </b>"
 +++
 
 **Nội dung:**
