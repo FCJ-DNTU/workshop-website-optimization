@@ -6,48 +6,143 @@ chapter = false
 pre = "<b>5. </b>"
 +++
 
-**Content:**
+#### S3
+**Amazon Simple Storage Service** (Amazon S3) is an object storage service built to store and retrieve any amount of data from anywhere on the web.
 
-- [Create an AWS Account](#create-an-aws-account)
-- [Add a payment method](#add-a-payment-method)
-- [Verify your phone number](#verify-your-phone-number)
-- [Choose an AWS Support plan](#choose-an-aws-support-plan)
-- [Wait for your account to be activated](#wait-for-your-account-to-be-activated)
+#### Purpose of S3 in workshop
 
-#### Create an AWS Account
+In this workshop, S3 will be used to:
+- **Store static content**: Website images, CSS, JavaScript
 
-1. Go to the [Amazon Web Services (AWS) home page](https://aws.amazon.com/).
-2. Click **Create an AWS Account** in the top right corner.
-   - **Note:** If you signed in to AWS recently, click **Sign in to the Console**. If **Create a new AWS account** isn't visible, first click on **Sign in to a different account**, and then click **Create a new AWS account**.
-3. Enter the account information and and then select **Continue**.
-   - **Important**: Make sure you enter the correct information, especially email.
-4. Select the type of account.
-   - **Note**: Personal and Professional both share the same features.
-5. Enter your company or personal information.
-   - **Important**: For professional AWS accounts, it's a best practice to enter the company phone number rather than a personal cell phone.
-6. Read and agree to the [AWS Customer Agreement](https://aws.amazon.com/agreement/).
-7. Select **Create Account** and **Continue**.
+#### Create S3 Bucket
+In this section, we will create an S3 bucket to store static resources for the website. Follow these steps:
 
-#### Add a payment method
+{{% notice info %}}
+S3 bucket names must be globally unique. If your chosen name is already taken, try another name.
+{{% /notice %}}
 
-On the Payment Information page, enter the information about your payment method, and then choose **Verify and Add**.
+#### 1. Access S3 Console
+- Open your browser and access the Amazon S3 console at https://console.aws.amazon.com/s3/
 
-- **Note:** If you want to use a different billing address for your AWS billing information, select **Use a new address** before you select **Verify and Add**.
+#### 2. Create New Bucket
+- Select **Create bucket**
+- Enter your unique bucket name
 
-#### Verify your phone number
+#### 3. Configure bucket
+- Uncheck "Block all public access" (because we need public access for web assets)
+- Confirm that you understand the bucket will be public
+- Keep other options as default
 
-1. Choose your country or region code from the list.
-2. Enter a phone number where you can be reached in the next few minutes.
-3. Enter the code displayed in the CAPTCHA, and then submit.
-4. In a few moments, an automated system contacts you.
-5. Enter the PIN you receive, and then choose Continue.
+![create-s3](/images/5-Create-Amazon-S3/1.png)
+#### 4. Create bucket policy
+- After creating the bucket, select your bucket
+![s3](/images/5-Create-Amazon-S3/2.png)
+- Go to **Permissions** tab on the **root** account
+- Select **Bucket Policy**
+![s3](/images/5-Create-Amazon-S3/3.png)
+- Add policy to allow public access:
 
-#### Choose an AWS Support plan
+```json
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowPublicRead",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::optimization-website/*"
+        }
+    ]
+}
+```
+![s3](/images/5-Create-Amazon-S3/4.png)
 
-- On the **Select a Support Plan** page, choose one of the available Support plans. For a description of the available Support plans and their benefits, see [Compare AWS Support Plans](https://aws.amazon.com/premiumsupport/plans/).
+#### 5. Upload files
+- Go to **Objects** tab
+- Select **Upload**
+- Drag and drop files or select **Add files**
+- Select **Upload**
 
-#### Wait for your account to be activated
+#### 6. Verify access
+- Select the uploaded file
+- Copy Object URL and open in browser
+- If you can see the file content, you've configured successfully
 
-After you choose a Support plan, a confirmation page indicates that your account is being activated. Accounts are usually activated within a few minutes, but the process might take up to 24 hours. \
-You can sign in to your AWS account during this time. The AWS home page might display a Complete Sign Up button during this time, even if you've completed all the steps in the sign-up process. \
-Once your account is fully activated, you will receive a confirmation email. Check your email and spam folder for the confirmation email. After you receive this email, you have full access to all AWS services.
+{{% notice warning %}}
+Ensure to only allow public access for files necessary for the website. Don't make the entire bucket public if it contains sensitive data.
+{{% /notice %}}
+
+### Connect S3 with Node.js
+
+1. Install AWS SDK for Node.js:
+```bash
+npm install aws-sdk
+```
+
+2. Example code for connecting and using S3:
+```javascript
+const AWS = require('aws-sdk');
+
+// Configure AWS
+AWS.config.update({
+    accessKeyId: 'YOUR_ACCESS_KEY',
+    secretAccessKey: 'YOUR_SECRET_KEY',
+    region: 'ap-southeast-1'
+});
+
+const s3 = new AWS.S3();
+
+// Upload file
+async function uploadFile(file, bucket, key) {
+    const params = {
+        Bucket: bucket,
+        Key: key,
+        Body: file
+    };
+    
+    try {
+        const data = await s3.upload(params).promise();
+        console.log('File uploaded successfully:', data.Location);
+        return data.Location;
+    } catch (err) {
+        console.error('Error uploading file:', err);
+        throw err;
+    }
+}
+
+// Download file
+async function getFile(bucket, key) {
+    const params = {
+        Bucket: bucket,
+        Key: key
+    };
+
+    try {
+        const data = await s3.getObject(params).promise();
+        return data.Body;
+    } catch (err) {
+        console.error('Error getting file:', err);
+        throw err;
+    }
+}
+```
+
+{{% notice tip %}}
+**Best Practices when using S3:**
+- Always use environment variables for credentials
+- Implement retry logic for upload/download
+- Use presigned URLs for temporary access
+- Implement proper error handling
+- Should use AWS SDK v3 for new Node.js projects
+{{% /notice %}}
+
+#### References
+1. [AWS SDK for JavaScript Documentation](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html)
+2. [S3 Best Practices](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html)
+3. [Using presigned URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-urls.html)
+4. [AWS SDK v3 for JavaScript](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/getting-started.html)
+
+### Complete!

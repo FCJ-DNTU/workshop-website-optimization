@@ -6,43 +6,100 @@ chapter = false
 pre = "<b>2. </b>"
 +++
 
-**Nội dung:**
+{{% notice note %}}
+Best practice, hạn chế sử dụng **Root User**.
+Thay vào đó hãy tạo IAM User vừa đủ quyền hạn truy cập tài nguyên để dễ dàng quản lý và tránh những rủi ro về bảo mật.
+{{% /notice %}}
 
-- [Tạo tài khoản AWS](#tạo-tài-khoản-aws)
-- [Thêm phương thức thanh toán](#thêm-phương-thức-thanh-toán)
-- [Xác thực số điện thoại của bạn](#xác-thực-số-điện-thoại-của-bạn)
-- [Chọn Support Plan](#chọn-support-plan)
-- [Đợi account của bạn được kích hoạt](#đợi-account-của-bạn-được-kích-hoạt)
+Ở **section này**,
+chúng ta sẽ tạo IAM User với quyền truy cập đầy đủ (Full Access) cho các dịch vụ:
+- **Amazon EC2**
+- **Amazon S3** 
+- **Auto Scaling**
+- **Application Load Balancer**
 
-#### Tạo tài khoản AWS
+#### 1. Truy cập AWS IAM Management Console
 
-1. Đi đến trang [Amazon Web Service homepage](https://aws.amazon.com/).
-2. Chọn **Create an AWS Account** ở góc trên bên phải.
-   - **\*Ghi Chú:** Nếu bạn không thấy **Create an AWS Account**, chọn **Sign In to the Console** sau đó chọn **Create a new AWS Account**.\*
-3. Nhập thông tin tài khoảng và chọn **Continue**.
-   - **\*Quan Trọng**: Hãy chắc chắn bạn nhập đúng thông tin, đặc biệt là email.\*
-4. Chọn loại account.
-   - **\*Ghi chú**: Personal và Professional đều có chung tính năng.\*
-5. Nhập thông tin công ty hoặc thông tin cá nhân của bạn.
-6. Đọc và đồng ý [AWS Customer Agreement](https://aws.amazon.com/agreement/).
-7. Chọn **Create Account** và **Continue**.
+![iam-management](/images/2-IAM-Service/1.png)
 
-#### Thêm phương thức thanh toán
+#### 2. Tạo User và gán Full Access Permissions
 
-- Nhập thông tin thẻ tín dụng của bạn và chọn **Verify and Add**.
-  - **\*Ghi chú**: Bạn có thể chọn 1 địa chỉ khác cho tài khoản của bạn bằng cách chọn **Use a new address** trước khi **Verify and Add**.\*
+2.1. Truy cập [Users](https://us-east-1.console.aws.amazon.com/iam/home?region=ap-southeast-1#/users) trong IAM Console
 
-#### Xác thực số điện thoại của bạn
+2.2. Chọn **Create user**
 
-1. Nhập số điện thoại.
-2. Nhập mã security check sau đó chọn **Send SMS**.
-3. Nhập mã code được gửi đến số điện thoại của bạn.
+2.3. Tại **Bước 1 - Specify user details**
+- Đặt **username** `restricted_user`
+- Chọn **Provide user access to the AWS Management Console**
+- Chọn **I want to create an IAM user**
+- Đặt **custom password** `Restricted_user_for_workshop`
+- Chọn **Next**
+![specify-user-detail](/images/2-IAM-Service/2.png)
 
-#### Chọn Support Plan
+2.4. Tại **Bước 2 - Set permissions**
+- Chọn **Attach policies directly**
+- Tìm và chọn các policies sau:
+  + **AmazonEC2FullAccess** - Quyền đầy đủ với EC2
+  + **AmazonS3FullAccess** - Quyền đầy đủ với S3
+  + **AutoScalingFullAccess** - Quyền đầy đủ với Auto Scaling
+  + **ElasticLoadBalancingFullAccess** - Quyền đầy đủ với Load Balancer
 
-- Trong trang **Select a support plan**, chọn 1 plan có hiệu lực, để so sánh giữa cách plan, bạn hãy xem [Compare AWS Support Plans](https://aws.amazon.com/premiumsupport/plans/).
+- Tạo thêm policy cho EC2 Instance Connect:
+  + Policy này sẽ giúp chúng ta có thể truy cập được vào EC2
+  + Chọn **Create policy**
+  + Chọn tab **JSON**
+  + Paste đoạn policy sau:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "ec2-instance-connect:SendSSHPublicKey",
+            "Resource": "*"
+        }
+    ]
+}
+```
+  + Đặt tên policy: **EC2InstanceConnectPolicy**
+  + Chọn **Create policy**
+  + Quay lại màn hình attach policy và chọn policy vừa tạo
+- Chọn **Next**
 
-#### Đợi account của bạn được kích hoạt
+![set-permission](/images/2-IAM-Service/3test.png)
 
-- Sau khi chọn **Support plan**, account thường được kích sau sau vài phút, nhưng quá trình có thể cần tốn đến 24 tiếng. Bạn vẫn có thể đăng nhập vào account AWS lúc này, Trang chủ AWS có thể sẽ hiển thị một nút “Complete Sign Up” trong thời gian này, cho dù bạn đã hoàn thành tất cả các bước ở phần đăng kí.
-- Sau khi nhận được email xác nhận account của bạn đã được kích hoạt, bạn có thể truy cập vào tất cả dịch vụ của AWS.
+- **Dưới đây là cách filter vào mục policy mình đã tạo**
+
+![policies](/images/2-IAM-Service/8.png)
+2.5. Tại **Bước 3 - Review and Create**
+- Kiểm tra thông tin user và permissions đã attach
+- Chọn **Create user**
+![review-pwd](/images/2-IAM-Service/4test.png)
+2.6. Tại **Bước 4 - Retrieve password**
+- Lưu trữ hoặc tải xuống bản **.csv** chứa thông tin đăng nhập
+- Copy **Console sign-in URL**
+![change-password](/images/2-IAM-Service/5.png)
+
+#### 3. Đăng nhập và xác thực
+
+3.1. Đăng nhập IAM User
+- Sử dụng **sign-in URL** đã copy
+- Đăng nhập với **username** và **password**
+![login](/images/2-IAM-Service/6.png)
+3.2. Đổi mật khẩu lần đầu đăng nhập
+![change-password](/images/2-IAM-Service/7.png)
+
+3.3. Kiểm tra quyền truy cập các dịch vụ
+- Verify EC2 service
+- Verify S3 service  
+- Verify Auto Scaling service
+- Verify Load Balancer service
+
+{{% notice warning %}}
+Lưu ý bảo mật:
+- Bảo vệ thông tin đăng nhập cẩn thận
+- Nên bật **MFA** cho tài khoản
+- Định kỳ đổi mật khẩu
+{{% /notice %}}
+
+### Hoàn Thành !
