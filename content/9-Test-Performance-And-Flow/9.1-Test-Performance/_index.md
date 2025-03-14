@@ -233,5 +233,4 @@ Resolved:
 3. Monitor resources during testing
 4. Verify auto scaling behavior
 {{% /notice %}}
-
 ### Complete!
