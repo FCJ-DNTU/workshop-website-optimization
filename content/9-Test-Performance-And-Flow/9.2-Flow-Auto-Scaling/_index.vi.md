@@ -58,30 +58,30 @@ graph TD
 Khi website của chúng ta có lượng truy cập tăng cao, hệ thống Auto Scaling sẽ tự động điều chỉnh số lượng EC2 instances để đáp ứng tải. Để theo dõi quá trình này, chúng ta cần giám sát các metrics thông qua CloudWatch, EC2 và Auto Scaling Groups.
 
 Để giả lập phần này mình sẽ chạy lại tool k6 một lần nữa.
-![target-cpu](/images/9-TestPerformance-And-Flow/13.png)
+![target-cpu](/images/9-Testperformance-And-Flow/13.png)
 ### 3.1 CloudWatch Dashboard
 
 #### 1. **Truy Cập Metrics Auto Scaling**
 - Đầu tiên, vào Auto Scaling groups
 - Chọn Auto Scaling group đã tạo để xem chi tiết
 
-![target-cpu](/images/9-TestPerformance-And-Flow/5.png)
+![target-cpu](/images/9-Testperformance-And-Flow/5.png)
 
 #### 2. **Xem Metrics EC2**
 - Chọn tab Monitoring 
 - Nhấp vào EC2 để xem các metrics chi tiết
 - Ở đây sẽ cung cấp các thông tin thống kê về **EC2** như **CPU, Memory, Network, Disk**, ... Điều này giúp cho việc quan sát và xử lý khi có sự có được linh hoạt và chính xác hơn.
-![target-cpu](/images/9-TestPerformance-And-Flow/9.png)
+![target-cpu](/images/9-Testperformance-And-Flow/9.png)
 
 #### 3. **CloudWatch Alarms**
 - Thế nhưng ở trên chỉ là các metrics của EC2, để xem được các metrics của Auto Scaling thì chúng ta cần đến CloudWatch Alarms
 - Đầu tiên sẽ cần ấn vào All Alarms, vì đã cấu hình lúc cài Auto Scaling đã có metrics CloudWatch nên sẽ có các alarms được tạo sẵn như sau
 - Ở cạnh Name của Alarms sẽ có các State, để xem sự biến động ta ấn vào State có tên là **OK**
-![target-cpu](/images/9-TestPerformance-And-Flow/11.png)
+![target-cpu](/images/9-Testperformance-And-Flow/11.png)
 
 #### 4. Alarms
 Sau khi truy cập vào sẽ hiện ra giao diện như sau
-![target-cpu](/images/9-TestPerformance-And-Flow/12.png)
+![target-cpu](/images/9-Testperformance-And-Flow/12.png)
 
 Ngoài State OK ra còn có các cái khác như In Alarm, Insufficient Data.
 
@@ -102,14 +102,14 @@ Ngoài State OK ra còn có các cái khác như In Alarm, Insufficient Data.
 
 #### 5. **Theo dõi sự biến đổi**
 - Tác động của k6 đã có hiệu quả, giờ ở phần biểu đồ đã có phần đi lên có nghĩa là lượt request đã làm tăng hiệu suất
-![target-cpu](/images/9-TestPerformance-And-Flow/15.png)
+![target-cpu](/images/9-Testperformance-And-Flow/15.png)
 
 #### Giờ hãy cùng qua phần 3.2 để xem EC2 và Auto Scaling Group đã bị ảnh hưởng như nào.
 
 ### 3.2 EC2 và Auto Scaling Group
 #### 1. **EC2 Scale Out**
 - Truy cập vào EC2 instance
-![target-cpu](/images/9-TestPerformance-And-Flow/16.png)
+![target-cpu](/images/9-Testperformance-And-Flow/16.png)
 Đã có thêm EC2 instance đã được tạo thêm và đang chạy, như vậy hiệu quả của việc Scale Out đã được thực hiện.
 
 - Trong trường hợp các EC2 bị unhealthy thì nó sẽ tự terminal và tạo thêm EC2 mới để thay thế.
@@ -118,11 +118,11 @@ Ngoài State OK ra còn có các cái khác như In Alarm, Insufficient Data.
 - Khi CloudWatch **In alarm** phát hiện lượt request giảm xuống thì EC2 sẽ tự động giảm số lượng instances.
 - Như ở đây tool k6 đã chạy xong và lượt request giảm xuống thấp hơn 30% so với ban đầu nên sẽ có hiệu ứng Scale In. Vì vậy EC2 sẽ tự terminate.
 
-![target-cpu](/images/9-TestPerformance-And-Flow/18.png)
+![target-cpu](/images/9-Testperformance-And-Flow/18.png)
 
 #### 3. **Auto Scaling Group**
 - Để xem lịch sử hoạt động ta sẽ truy cập vào tab Activity, bên trong sẽ bao gồm các thông tin về lịch sử tạo trên Auto Scaling.
-![target-cpu](/images/9-TestPerformance-And-Flow/17.png)
+![target-cpu](/images/9-Testperformance-And-Flow/17.png)
 ## Phần 4: Xử Lý Sự Cố
 
 ### 4.1 Các Vấn Đề Thường Gặp

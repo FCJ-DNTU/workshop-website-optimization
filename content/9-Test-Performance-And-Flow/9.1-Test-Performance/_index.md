@@ -133,9 +133,9 @@ export default function () {
 ### On EC2 Instance
 #### Performance Test Results
 **Basic Test (Warm Up)**
-![target-cpu](/images/9-TestPerformance-And-Flow/1.png)
+![target-cpu](/images/9-Testperformance-And-Flow/1.png)
 **Heavy Test (High Load)**
-![target-cpu](/images/9-TestPerformance-And-Flow/3.png)
+![target-cpu](/images/9-Testperformance-And-Flow/3.png)
 
 #### Detailed Performance Test Analysis
 1. Basic Metrics
@@ -184,7 +184,7 @@ export default function () {
 ### On EC2 Instance After Using ALB and Auto Scaling
 #### Performance Test Results
 **Basic Test (Warm Up)**
-![target-cpu](/images/9-TestPerformance-And-Flow/7.png)
+![target-cpu](/images/9-Testperformance-And-Flow/7.png)
 
 1. **Overall Comparison**
 | Metric | Before (EC2) | After (ALB+ASG) | % Improvement | Assessment |
@@ -222,7 +222,7 @@ Resolved:
 ```
 
 **Heavy Test (High Load)**
-![target-cpu](/images/9-TestPerformance-And-Flow/10.png)
+![target-cpu](/images/9-Testperformance-And-Flow/10.png)
 
 [Continue with the rest of the analysis...]
 

@@ -58,30 +58,30 @@ graph TD
 When our website experiences high traffic, the Auto Scaling system automatically adjusts the number of EC2 instances to handle the load. To monitor this process, we need to track metrics through CloudWatch, EC2, and Auto Scaling Groups.
 
 To simulate this part, we'll run the k6 tool again.
-![target-cpu](/images/9-TestPerformance-And-Flow/13.png)
+![target-cpu](/images/9-Testperformance-And-Flow/13.png)
 
 ### 3.1 CloudWatch Dashboard
 
 #### 1. **Accessing Auto Scaling Metrics**
 - First, go to Auto Scaling groups
 - Select the created Auto Scaling group to view details
-![target-cpu](/images/9-TestPerformance-And-Flow/5.png)
+![target-cpu](/images/9-Testperformance-And-Flow/5.png)
 
 #### 2. **View EC2 Metrics**
 - Select the Monitoring tab
 - Click on EC2 to view detailed metrics
 - This provides statistical information about **EC2** such as **CPU, Memory, Network, Disk**, ... enabling more flexible and accurate observation and handling when issues occur.
-![target-cpu](/images/9-TestPerformance-And-Flow/9.png)
+![target-cpu](/images/9-Testperformance-And-Flow/9.png)
 
 #### 3. **CloudWatch Alarms**
 - However, the above only shows EC2 metrics. To view Auto Scaling metrics, we need to access CloudWatch Alarms
 - First, click on All Alarms. Since we configured CloudWatch metrics during Auto Scaling setup, there will be pre-created alarms
 - Next to the Alarm Names are States. To see the changes, click on the State labeled "OK"
-![target-cpu](/images/9-TestPerformance-And-Flow/11.png)
+![target-cpu](/images/9-Testperformance-And-Flow/11.png)
 
 #### 4. Alarms
 After accessing, you'll see an interface like this:
-![target-cpu](/images/9-TestPerformance-And-Flow/12.png)
+![target-cpu](/images/9-Testperformance-And-Flow/12.png)
 
 Besides the OK State, there are others like In Alarm, Insufficient Data.
 
@@ -102,14 +102,14 @@ Besides the OK State, there are others like In Alarm, Insufficient Data.
 
 #### 5. **Monitoring Changes**
 - The k6 tool has taken effect, now the graph shows an upward trend meaning requests have increased performance
-![target-cpu](/images/9-TestPerformance-And-Flow/15.png)
+![target-cpu](/images/9-Testperformance-And-Flow/15.png)
 
 Let's move to section 3.2 to see how EC2 and Auto Scaling Group have been affected.
 
 ### 3.2 EC2 and Auto Scaling Group
 #### 1. **EC2 Scale Out**
 - Access EC2 instances
-![target-cpu](/images/9-TestPerformance-And-Flow/16.png)
+![target-cpu](/images/9-Testperformance-And-Flow/16.png)
 Additional EC2 instances have been created and are running, showing the Scale Out effect in action.
 
 - If EC2 instances become unhealthy, they will automatically terminate and create new ones as replacements.
@@ -118,11 +118,11 @@ Additional EC2 instances have been created and are running, showing the Scale Ou
 - When CloudWatch **In alarm** detects decreased requests, EC2 will automatically reduce the number of instances
 - As here, the k6 tool has finished running and requests have dropped below 30% of initial levels, triggering Scale In. Therefore, EC2 will self-terminate.
 
-![target-cpu](/images/9-TestPerformance-And-Flow/18.png)
+![target-cpu](/images/9-Testperformance-And-Flow/18.png)
 
 #### 3. **Auto Scaling Group**
 - To view activity history, access the Activity tab, which includes information about creation history in Auto Scaling.
-![target-cpu](/images/9-TestPerformance-And-Flow/17.png)
+![target-cpu](/images/9-Testperformance-And-Flow/17.png)
 
 ## Part 4: Troubleshooting
 

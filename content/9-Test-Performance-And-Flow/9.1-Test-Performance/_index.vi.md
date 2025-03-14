@@ -133,9 +133,9 @@ const response = http.get(BASE_URL + "/");
 ### Trên EC2 instance
 #### Kết quả sau khi kiểm tra hiệu năng
 **Test Cơ Bản (Warm Up)**
-![target-cpu](/images/9-TestPerformance-And-Flow/1.png)
+![target-cpu](/images/9-Testperformance-And-Flow/1.png)
 **Test Nặng (High Load)**
-![target-cpu](/images/9-TestPerformance-And-Flow/3.png)
+![target-cpu](/images/9-Testperformance-And-Flow/3.png)
 #### Phân Tích Chi Tiết Performance Tests
  1. Thông Số Cơ Bản
 | Metric | Test 1 (100 VUs) | Đánh Giá | Test 2 (500 VUs) | Đánh Giá |
@@ -183,7 +183,7 @@ const response = http.get(BASE_URL + "/");
 ### Trên EC2 instance sau khi sử dụng ALB, AutoScaling
 #### Kết quả sau khi kiểm tra hiệu năng
 **Test Cơ Bản (Warm Up)**
-![target-cpu](/images/9-TestPerformance-And-Flow/7.png)
+![target-cpu](/images/9-Testperformance-And-Flow/7.png)
 
 1. **Bảng So Sánh Tổng Quan**
 | Metric | Trước (EC2) | Sau (ALB+ASG) | % Cải Thiện | Đánh Giá |
@@ -222,7 +222,7 @@ const response = http.get(BASE_URL + "/");
 ```
 
 **Test Nặng (High Load)**
-![target-cpu](/images/9-TestPerformance-And-Flow/10.png)
+![target-cpu](/images/9-Testperformance-And-Flow/10.png)
 #### So Sánh Kết Quả Hai Lần Test Với 500 VUs
 
 1. **Bảng So Sánh Tổng Quan**
