@@ -6,9 +6,20 @@ chapter = false
 pre = "<b>6. </b>"
 +++
 
+
+Trong phần này, chúng ta sẽ học cách triển khai một ứng dụng Node.js lên EC2 instance. Quy trình này bao gồm việc cài đặt các dependencies cần thiết, cấu hình môi trường, và thiết lập service để đảm bảo ứng dụng chạy ổn định và liên tục.
+
+Các bước chính bao gồm:
+- Cài đặt Node.js
+- Clone và cài đặt ứng dụng từ repository
+- Cấu hình environment variables
+- Thiết lập systemd service
+- Kiểm tra và xác nhận deployment
+
+
 ### Triển khai Node.js Application
 
-#### 1. Cài đặt Node.js và PM2
+#### 1. Cài đặt Node.js
 ```bash
 # Cài đặt Node.js 18.x
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -18,8 +29,6 @@ sudo apt-get install -y nodejs
 node --version
 npm --version
 
-# Cài đặt PM2 globally
-sudo npm install -g pm2
 ```
 
 #### 2. Clone và Cài đặt Ứng dụng

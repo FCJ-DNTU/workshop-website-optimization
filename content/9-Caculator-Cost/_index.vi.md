@@ -1,8 +1,8 @@
 +++
 title = "Tính Toán Chi Phí AWS"
-weight = 10
+weight = 9
 chapter = false
-pre = "<b>10. </b>"
+pre = "<b>9. </b>"
 +++
 
 ### Chi Phí Ước Tính Theo Service

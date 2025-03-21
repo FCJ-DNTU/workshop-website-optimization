@@ -1,7 +1,7 @@
 +++
 title = "Test performance and Auto Scaling workflow"
-weight = 9
-pre = "<b>9 </b>"
+weight = 8
+pre = "<b>8. </b>"
 +++
 
 ### Overview

@@ -22,7 +22,9 @@ VPC gives you complete control over your network environment, from IP address co
 
 #### VPC Costs
 
-There are no charges for using VPC. However, there are service charges for **VPC services** such as NAT Gateways, IP Address Manager, traffic mirroring, Reachability Analyzer, and Network Access Analyzer.
+AWS does not charge for creating and using basic VPC features. However, you will be charged for:
+- Data transfer between AZs or out of VPC
+- Additional VPC services such as NAT Gateways, IP Address Manager, traffic mirroring, Reachability Analyzer, and Network Access Analyzer
 
 #### Create VPC Instance
 In this section we will create a **VPC Instance**, including 2 **AZ**, 2 Public Subnets

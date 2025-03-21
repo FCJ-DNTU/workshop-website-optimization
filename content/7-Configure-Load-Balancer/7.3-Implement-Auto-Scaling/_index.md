@@ -1,9 +1,9 @@
 +++
 title = "Implement Auto Scaling"
 date = 2020-05-14T00:38:32+07:00
-weight = 8
+weight = 3
 chapter = false
-pre = "<b>8. </b>"
+pre = "<b>7.3 </b>"
 +++
 
 #### Auto Scaling

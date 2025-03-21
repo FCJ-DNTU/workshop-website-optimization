@@ -23,7 +23,9 @@ VPC giúp bạn kiểm soát hoàn toàn môi trường mạng của mình, từ
 
 #### Chi phí cho VPC
 
-Sẽ không phát sinh chi phí khi sử dụng VPC. Tuy nhiên, sẽ có phí dịch vụ cho những **dịch vụ của VPC**, ví dụ NAT Gateways, IP Address Manager, traffic mirroring, Reachability Analyzer, và Network Access Analyzer.
+AWS không tính phí cho việc tạo và sử dụng VPC cơ bản. Tuy nhiên, bạn sẽ phải trả phí cho:
+- Data transfer giữa các AZ hoặc ra bên ngoài VPC
+- Các dịch vụ bổ sung của VPC như NAT Gateways, IP Address Manager, traffic mirroring, Reachability Analyzer, và Network Access Analyzer
 
 #### Khởi tạo VPC Instance
 Ở section này chúng ta sẽ khởi tạo **VPC Instance**, bao gồm 2 **AZ**, 2 Public Subnets

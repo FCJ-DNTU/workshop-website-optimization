@@ -1,7 +1,7 @@
 +++
 title = "Kiểm tra hiệu năng và luồng hoạt động Auto Scaling"
-weight = 9
-pre = "<b>9 </b>"
+weight = 8
+pre = "<b>8. </b>"
 +++
 
 ### Tổng quan

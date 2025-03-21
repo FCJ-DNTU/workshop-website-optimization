@@ -1,9 +1,9 @@
 +++
 title = "Clean Up Resources"
 date = 2020-05-14T00:38:32+07:00
-weight = 11
+weight = 10
 chapter = false
-pre = "<b>11. </b>"
+pre = "<b>10. </b>"
 +++
 
 ### Overview

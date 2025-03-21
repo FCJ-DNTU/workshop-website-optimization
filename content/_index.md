@@ -24,7 +24,6 @@ In this workshop, you will learn how to deploy an optimized e-commerce website s
 #### Requirements
 
 + AWS account with IAM access rights.
-+ A computer with SSH client (such as Terminal or PuTTY).
 
 
 #### Content
@@ -36,7 +35,6 @@ In this workshop, you will learn how to deploy an optimized e-commerce website s
 5. [Creating S3 Bucket](5-Create-Amazon-S3/)
 6. [Deploying Website to EC2](6-Deploy-Project-To-EC2/)
 7. [Configuring Load Balancer](7-Configure-Load-Balancer/)
-8. [Implementing Auto Scaling](8-Implement-Auto-Scaling/)
-9. [Testing Performance and Auto Scaling Flow](9-Test-Performance-And-Flow/)
-10. [Calculating AWS Costs](10-Caculator-Cost/)
-11. [Cleaning Up Resources](11-Clean-resource/)
+8. [Testing Performance and Auto Scaling Flow](9-Test-Performance-And-Flow/)
+9. [Calculating AWS Costs](10-Caculator-Cost/)
+10. [Cleaning Up Resources](11-Clean-resource/)

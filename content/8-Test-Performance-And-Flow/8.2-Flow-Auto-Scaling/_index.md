@@ -1,7 +1,7 @@
 +++
 title = "Auto Scaling Flow"
 weight = 2
-pre = "<b>9.2 </b>"
+pre = "<b>8.2 </b>"
 +++
 
 ## Part 1: Understanding Auto Scaling
@@ -32,7 +32,7 @@ Auto Scaling is a feature that automatically increases/decreases the number of E
 
 ### 2.1 When System Load Increases (Scale Out)
 
-```mermaid
+{{<mermaid>}}
 graph TD
     A[High load] -->|CPU > 40% for 3 minutes| B[CloudWatch alarm]
     B -->|Send notification| C[Auto Scaling receives command]
@@ -40,18 +40,18 @@ graph TD
     D -->|Wait 2-3 minutes| E[Server boots]
     E -->|Install application| F[Application runs]
     F -->|Health check OK| G[Start receiving traffic]
-```
+{{</mermaid>}}
 
 ### 2.2 When System Load Decreases (Scale In)
 
-```mermaid
+{{<mermaid>}}
 graph TD
     A[Low load] -->|CPU < 30% for 15 minutes| B[CloudWatch alarm]
     B -->|Notify| C[Auto Scaling evaluates]
     C -->|Select server| D[Disconnect]
     D -->|Wait for current requests| E[Stop server]
     E -->|Remove from system| F[Update count]
-```
+{{</mermaid>}}
 
 ## Part 3: Auto Scaling Process
 

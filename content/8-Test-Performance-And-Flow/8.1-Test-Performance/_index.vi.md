@@ -1,7 +1,7 @@
 +++
 title = "Kiểm tra hiệu năng"
 weight = 1
-pre = "<b>9.1 </b>"
+pre = "<b>8.1 </b>"
 +++
 
 ### Test Hiệu Năng Ứng Dụng 

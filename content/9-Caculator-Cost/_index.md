@@ -1,8 +1,8 @@
 +++
 title = "AWS Cost Calculator"
-weight = 10
+weight = 9
 chapter = false
-pre = "<b>10. </b>"
+pre = "<b>9. </b>"
 +++
 
 ### Estimated Costs by Service

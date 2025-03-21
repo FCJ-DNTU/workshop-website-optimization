@@ -6,9 +6,18 @@ chapter = false
 pre = "<b>6. </b>"
 +++
 
+In this section, we will learn how to deploy a Node.js application to an EC2 instance. This process includes installing necessary dependencies, configuring the environment, and setting up services to ensure the application runs stably and continuously.
+
+Key steps include:
+- Installing Node.js and PM2 process manager
+- Cloning and installing the application from repository
+- Configuring environment variables
+- Setting up systemd service
+- Testing and verifying deployment
+
 ### Deploy Node.js Application
 
-#### 1. Install Node.js and PM2
+#### 1. Install Node.js
 ```bash
 # Install Node.js 18.x
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -18,8 +27,6 @@ sudo apt-get install -y nodejs
 node --version
 npm --version
 
-# Install PM2 globally
-sudo npm install -g pm2
 ```
 
 #### 2. Clone and Install Application

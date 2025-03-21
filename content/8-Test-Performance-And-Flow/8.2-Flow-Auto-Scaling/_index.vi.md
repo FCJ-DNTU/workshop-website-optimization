@@ -1,7 +1,7 @@
 +++
 title = "Luồng hoạt động Auto Scaling"
 weight = 2
-pre = "<b>9.2 </b>"
+pre = "<b>8.2 </b>"
 +++
 
 ## Phần 1: Hiểu Về Auto Scaling
@@ -31,8 +31,7 @@ Auto Scaling là tính năng tự động tăng/giảm số lượng EC2 instanc
 ## Phần 2: Luồng Hoạt Động Chi Tiết
 
 ### 2.1 Khi Hệ Thống Tăng Tải (Scale Out)
-
-```mermaid
+{{<mermaid>}}
 graph TD
     A[Tải cao] -->|CPU > 40% trong 3 phút| B[CloudWatch báo động]
     B -->|Gửi thông báo| C[Auto Scaling nhận lệnh]
@@ -40,18 +39,18 @@ graph TD
     D -->|Chờ 2-3 phút| E[Máy chủ khởi động]
     E -->|Cài đặt ứng dụng| F[Ứng dụng chạy]
     F -->|Health check OK| G[Bắt đầu nhận traffic]
-```
+{{</mermaid>}}
 
 ### 2.2 Khi Hệ Thống Giảm Tải (Scale In)
 
-```mermaid
+{{<mermaid>}}
 graph TD
     A[Tải thấp] -->|CPU < 30% trong 15 phút| B[CloudWatch báo động]
     B -->|Thông báo| C[Auto Scaling xem xét]
     C -->|Chọn máy chủ| D[Ngắt kết nối]
     D -->|Đợi requests hiện tại| E[Dừng máy chủ]
     E -->|Xóa khỏi hệ thống| F[Cập nhật số lượng]
-```
+    {{</mermaid>}}
 
 ## Phần 3: Quá Trình Auto Scaling
 

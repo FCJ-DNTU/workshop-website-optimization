@@ -76,7 +76,13 @@ Click "Create target group"
 #### 2.4. Review và Create
 1. Review cấu hình
 2. Click "Create load balancer"
+3. Kiểm tra Resource Map
 
+Sau khi tạo xong ALB, bạn có thể kiểm tra Resource Map để xác nhận:
+- ALB đã được kết nối với Target Group
+- Target Group đã có các EC2 instances được đăng ký
+- Security Groups được cấu hình đúng
+![ALB](/images/7-Configure-Load-Balancer/18.png)
 {{% notice info %}}
 **Port 9000:**
 - Traffic flow: Client → ALB (80/443) → Target Group (9000) → EC2 Instance (9000)

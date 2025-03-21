@@ -24,7 +24,6 @@ Trong workshop này, bạn sẽ học cách triển khai một hệ thống Webs
 #### Yêu cầu
 
 + Tài khoản AWS với quyền truy cập IAM.
-+ Một máy tính với SSH client (như Terminal hoặc PuTTY).
 
 
 #### Nội Dung
@@ -36,7 +35,6 @@ Trong workshop này, bạn sẽ học cách triển khai một hệ thống Webs
 5. [Khởi tạo S3 Bucket](5-Create-Amazon-S3/)
 6. [Triển khai Website Lên EC2](6-Deploy-Project-To-EC2/)
 7. [Cấu hình Load Balancer](7-Configure-Load-Balancer/)
-8. [Khởi chạy Auto Scaling](8-Implement-Auto-Scaling/)
-9. [Kiểm tra hiệu năng và luồng hoạt động Auto Scaling](9-Test-Performance-And-Flow/)
-10. [Tính Toán Chi Phí AWS](10-Caculator-Cost/)
-11. [Dọn dẹp tài nguyên](11-Clean-resource/)
+8. [Kiểm tra hiệu năng và luồng hoạt động Auto Scaling](9-Test-Performance-And-Flow/)
+9. [Tính Toán Chi Phí AWS](10-Caculator-Cost/)
+10. [Dọn dẹp tài nguyên](11-Clean-resource/)
